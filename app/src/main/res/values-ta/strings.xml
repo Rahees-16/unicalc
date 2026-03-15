@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">மாற்று</string>
+    <string name="nav_calculator">கணிப்பான்</string>
+    <string name="nav_currency">நாணயம்</string>
+    <string name="nav_settings">அமைப்புகள்</string>
+    <string name="converter_title">அலகு மாற்றி</string>
+    <string name="calculator_title">கணிப்பான்</string>
+    <string name="currency_title">நாணய மாற்றி</string>
+    <string name="settings_title">அமைப்புகள்</string>
+    <string name="history_title">வரலாறு</string>
+    <string name="profession_title">தொழில் கருவிகள்</string>
+    <string name="from_unit">இருந்து</string>
+    <string name="to_unit">க்கு</string>
+    <string name="swap_units">அலகுகளை மாற்று</string>
+    <string name="enter_value">மதிப்பை உள்ளிடவும்</string>
+    <string name="show_all_units">அனைத்து அலகுகளையும் காட்டு</string>
+    <string name="add_to_favorites">பிடித்தவையில் சேர்</string>
+    <string name="clear_history">வரலாற்றை அழி</string>
+    <string name="theme">தீம்</string>
+    <string name="decimal_places">தசம இடங்கள்</string>
+    <string name="default_currency_pair">இயல்புநிலை நாணய ஜோடி</string>
+    <string name="system_default">கணினி இயல்புநிலை</string>
+    <string name="light">ஒளி</string>
+    <string name="dark">இருள்</string>
+    <string name="widget_description">விரைவு அலகு மாற்றி விட்ஜெட்</string>
+    <string name="last_updated">கடைசி புதுப்பிப்பு: %1$s</string>
+    <string name="offline_cached">ஆஃப்லைன் - சேமித்த விகிதங்கள்</string>
+    <string name="no_favorites">இன்னும் பிடித்தவை இல்லை</string>
+    <string name="no_history">மாற்ற வரலாறு இல்லை</string>
+    <string name="search_currency">நாணயம் தேடு</string>
+</resources>

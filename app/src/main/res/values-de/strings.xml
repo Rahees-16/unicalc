@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">Umrechnen</string>
+    <string name="nav_calculator">Rechner</string>
+    <string name="nav_currency">Währung</string>
+    <string name="nav_settings">Einstellungen</string>
+    <string name="converter_title">Einheitenumrechner</string>
+    <string name="calculator_title">Rechner</string>
+    <string name="currency_title">Währungsumrechner</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="history_title">Verlauf</string>
+    <string name="profession_title">Profi-Werkzeuge</string>
+    <string name="from_unit">Von</string>
+    <string name="to_unit">Nach</string>
+    <string name="swap_units">Einheiten tauschen</string>
+    <string name="enter_value">Wert eingeben</string>
+    <string name="show_all_units">Alle Einheiten anzeigen</string>
+    <string name="add_to_favorites">Zu Favoriten hinzufügen</string>
+    <string name="clear_history">Verlauf löschen</string>
+    <string name="theme">Design</string>
+    <string name="decimal_places">Dezimalstellen</string>
+    <string name="default_currency_pair">Standard-Währungspaar</string>
+    <string name="system_default">Systemstandard</string>
+    <string name="light">Hell</string>
+    <string name="dark">Dunkel</string>
+    <string name="widget_description">Schneller Einheitenumrechner</string>
+    <string name="last_updated">Zuletzt aktualisiert: %1$s</string>
+    <string name="offline_cached">Offline - gespeicherte Kurse</string>
+    <string name="no_favorites">Noch keine Favoriten</string>
+    <string name="no_history">Kein Umrechnungsverlauf</string>
+    <string name="search_currency">Währung suchen</string>
+</resources>

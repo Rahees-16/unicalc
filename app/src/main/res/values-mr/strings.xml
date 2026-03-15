@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">रूपांतर</string>
+    <string name="nav_calculator">कॅल्क्युलेटर</string>
+    <string name="nav_currency">चलन</string>
+    <string name="nav_settings">सेटिंग्ज</string>
+    <string name="converter_title">एकक रूपांतरक</string>
+    <string name="calculator_title">कॅल्क्युलेटर</string>
+    <string name="currency_title">चलन रूपांतरक</string>
+    <string name="settings_title">सेटिंग्ज</string>
+    <string name="history_title">इतिहास</string>
+    <string name="profession_title">व्यावसायिक साधने</string>
+    <string name="from_unit">कडून</string>
+    <string name="to_unit">कडे</string>
+    <string name="swap_units">एकके बदला</string>
+    <string name="enter_value">मूल्य प्रविष्ट करा</string>
+    <string name="show_all_units">सर्व एकके दाखवा</string>
+    <string name="add_to_favorites">आवडीत जोडा</string>
+    <string name="clear_history">इतिहास साफ करा</string>
+    <string name="theme">थीम</string>
+    <string name="decimal_places">दशांश स्थाने</string>
+    <string name="default_currency_pair">डीफॉल्ट चलन जोडी</string>
+    <string name="system_default">सिस्टम डीफॉल्ट</string>
+    <string name="light">लाइट</string>
+    <string name="dark">डार्क</string>
+    <string name="widget_description">जलद एकक रूपांतरक विजेट</string>
+    <string name="last_updated">शेवटचे अपडेट: %1$s</string>
+    <string name="offline_cached">ऑफलाइन - कॅश्ड दर</string>
+    <string name="no_favorites">अजून आवडीचे नाहीत</string>
+    <string name="no_history">रूपांतर इतिहास नाही</string>
+    <string name="search_currency">चलन शोधा</string>
+</resources>

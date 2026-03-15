@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">പരിവർത്തനം</string>
+    <string name="nav_calculator">കാൽക്കുലേറ്റർ</string>
+    <string name="nav_currency">കറൻസി</string>
+    <string name="nav_settings">ക്രമീകരണങ്ങൾ</string>
+    <string name="converter_title">യൂണിറ്റ് കൺവെർട്ടർ</string>
+    <string name="calculator_title">കാൽക്കുലേറ്റർ</string>
+    <string name="currency_title">കറൻസി കൺവെർട്ടർ</string>
+    <string name="settings_title">ക്രമീകരണങ്ങൾ</string>
+    <string name="history_title">ചരിത്രം</string>
+    <string name="profession_title">പ്രൊഫഷണൽ ടൂളുകൾ</string>
+    <string name="from_unit">ഇതിൽ നിന്ന്</string>
+    <string name="to_unit">ഇതിലേക്ക്</string>
+    <string name="swap_units">യൂണിറ്റുകൾ മാറ്റുക</string>
+    <string name="enter_value">മൂല്യം നൽകുക</string>
+    <string name="show_all_units">എല്ലാ യൂണിറ്റുകളും കാണിക്കുക</string>
+    <string name="add_to_favorites">പ്രിയപ്പെട്ടവയിലേക്ക് ചേർക്കുക</string>
+    <string name="clear_history">ചരിത്രം മായ്ക്കുക</string>
+    <string name="theme">തീം</string>
+    <string name="decimal_places">ദശാംശ സ്ഥാനങ്ങൾ</string>
+    <string name="default_currency_pair">ഡിഫോൾട്ട് കറൻസി ജോടി</string>
+    <string name="system_default">സിസ്റ്റം ഡിഫോൾട്ട്</string>
+    <string name="light">ലൈറ്റ്</string>
+    <string name="dark">ഡാർക്ക്</string>
+    <string name="widget_description">ദ്രുത യൂണിറ്റ് കൺവെർട്ടർ വിജറ്റ്</string>
+    <string name="last_updated">അവസാന അപ്ഡേറ്റ്: %1$s</string>
+    <string name="offline_cached">ഓഫ്‌ലൈൻ - കാഷ് ചെയ്ത നിരക്കുകൾ</string>
+    <string name="no_favorites">ഇതുവരെ പ്രിയപ്പെട്ടവ ഇല്ല</string>
+    <string name="no_history">പരിവർത്തന ചരിത്രമില്ല</string>
+    <string name="search_currency">കറൻസി തിരയുക</string>
+</resources>

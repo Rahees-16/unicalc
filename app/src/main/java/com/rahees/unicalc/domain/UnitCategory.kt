@@ -15,5 +15,9 @@ enum class UnitCategory(val displayName: String, val icon: String) {
     FUEL("Fuel Economy", "local_gas_station"),
     ANGLE("Angle", "architecture"),
     FREQUENCY("Frequency", "graphic_eq"),
-    COOKING("Cooking", "restaurant")
+    COOKING("Cooking", "restaurant"),
+    TORQUE("Torque", "build"),
+    DENSITY("Density", "science"),
+    FORCE("Force", "fitness_center"),
+    ILLUMINANCE("Illuminance", "light_mode")
 }

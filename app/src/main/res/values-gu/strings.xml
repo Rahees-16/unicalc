@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">રૂપાંતર</string>
+    <string name="nav_calculator">કેલ્ક્યુલેટર</string>
+    <string name="nav_currency">ચલણ</string>
+    <string name="nav_settings">સેટિંગ્સ</string>
+    <string name="converter_title">એકમ રૂપાંતરક</string>
+    <string name="calculator_title">કેલ્ક્યુલેટર</string>
+    <string name="currency_title">ચલણ રૂપાંતરક</string>
+    <string name="settings_title">સેટિંગ્સ</string>
+    <string name="history_title">ઇતિહાસ</string>
+    <string name="profession_title">વ્યાવસાયિક સાધનો</string>
+    <string name="from_unit">થી</string>
+    <string name="to_unit">માં</string>
+    <string name="swap_units">એકમો બદલો</string>
+    <string name="enter_value">મૂલ્ય દાખલ કરો</string>
+    <string name="show_all_units">બધા એકમો બતાવો</string>
+    <string name="add_to_favorites">પસંદીદામાં ઉમેરો</string>
+    <string name="clear_history">ઇતિહાસ સાફ કરો</string>
+    <string name="theme">થીમ</string>
+    <string name="decimal_places">દશાંશ સ્થાનો</string>
+    <string name="default_currency_pair">ડિફોલ્ટ ચલણ જોડી</string>
+    <string name="system_default">સિસ્ટમ ડિફોલ્ટ</string>
+    <string name="light">લાઇટ</string>
+    <string name="dark">ડાર્ક</string>
+    <string name="widget_description">ઝડપી એકમ રૂપાંતરક વિજેટ</string>
+    <string name="last_updated">છેલ્લું અપડેટ: %1$s</string>
+    <string name="offline_cached">ઑફલાઇન - સંગ્રહિત દરો</string>
+    <string name="no_favorites">હજુ કોઈ પસંદીદા નથી</string>
+    <string name="no_history">રૂપાંતર ઇતિહાસ નથી</string>
+    <string name="search_currency">ચલણ શોધો</string>
+</resources>

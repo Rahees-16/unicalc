@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">Tukar</string>
+    <string name="nav_calculator">Kalkulator</string>
+    <string name="nav_currency">Mata Wang</string>
+    <string name="nav_settings">Tetapan</string>
+    <string name="converter_title">Penukar Unit</string>
+    <string name="calculator_title">Kalkulator</string>
+    <string name="currency_title">Penukar Mata Wang</string>
+    <string name="settings_title">Tetapan</string>
+    <string name="history_title">Sejarah</string>
+    <string name="profession_title">Alat Profesional</string>
+    <string name="from_unit">Dari</string>
+    <string name="to_unit">Ke</string>
+    <string name="swap_units">Tukar unit</string>
+    <string name="enter_value">Masukkan nilai</string>
+    <string name="show_all_units">Tunjuk semua unit</string>
+    <string name="add_to_favorites">Tambah ke kegemaran</string>
+    <string name="clear_history">Padam sejarah</string>
+    <string name="theme">Tema</string>
+    <string name="decimal_places">Tempat perpuluhan</string>
+    <string name="default_currency_pair">Pasangan mata wang lalai</string>
+    <string name="system_default">Lalai sistem</string>
+    <string name="light">Cerah</string>
+    <string name="dark">Gelap</string>
+    <string name="widget_description">Widget penukar unit pantas</string>
+    <string name="last_updated">Kemas kini terakhir: %1$s</string>
+    <string name="offline_cached">Luar talian - kadar tersimpan</string>
+    <string name="no_favorites">Tiada kegemaran lagi</string>
+    <string name="no_history">Tiada sejarah penukaran</string>
+    <string name="search_currency">Cari mata wang</string>
+</resources>

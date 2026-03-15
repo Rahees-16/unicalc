@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">Convertir</string>
+    <string name="nav_calculator">Calculatrice</string>
+    <string name="nav_currency">Devise</string>
+    <string name="nav_settings">Paramètres</string>
+    <string name="converter_title">Convertisseur d\'Unités</string>
+    <string name="calculator_title">Calculatrice</string>
+    <string name="currency_title">Convertisseur de Devises</string>
+    <string name="settings_title">Paramètres</string>
+    <string name="history_title">Historique</string>
+    <string name="profession_title">Outils Professionnels</string>
+    <string name="from_unit">De</string>
+    <string name="to_unit">À</string>
+    <string name="swap_units">Échanger les unités</string>
+    <string name="enter_value">Entrez la valeur</string>
+    <string name="show_all_units">Afficher toutes les unités</string>
+    <string name="add_to_favorites">Ajouter aux favoris</string>
+    <string name="clear_history">Effacer l\'historique</string>
+    <string name="theme">Thème</string>
+    <string name="decimal_places">Décimales</string>
+    <string name="default_currency_pair">Paire de devises par défaut</string>
+    <string name="system_default">Par défaut du système</string>
+    <string name="light">Clair</string>
+    <string name="dark">Sombre</string>
+    <string name="widget_description">Widget de conversion rapide</string>
+    <string name="last_updated">Dernière mise à jour: %1$s</string>
+    <string name="offline_cached">Hors ligne - utilisation des taux en cache</string>
+    <string name="no_favorites">Pas encore de favoris</string>
+    <string name="no_history">Pas d\'historique de conversion</string>
+    <string name="search_currency">Rechercher une devise</string>
+</resources>

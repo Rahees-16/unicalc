@@ -1,5 +1,7 @@
 package com.rahees.unicalc.ui.screens.converter
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,14 +12,17 @@ import com.rahees.unicalc.domain.UnitCategory
 import com.rahees.unicalc.domain.UnitConverter
 import com.rahees.unicalc.domain.UnitData
 import com.rahees.unicalc.domain.UnitDef
+import com.rahees.unicalc.ui.screens.settings.SettingsViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.text.NumberFormat
 import javax.inject.Inject
 
 data class ConverterUiState(
@@ -35,8 +40,11 @@ data class ConverterUiState(
 @HiltViewModel
 class ConverterViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val conversionDao: ConversionDao
+    private val conversionDao: ConversionDao,
+    private val dataStore: DataStore<Preferences>
 ) : ViewModel() {
+
+    private var decimalPlaces: Int = 4
 
     private val _uiState = MutableStateFlow(ConverterUiState())
     val uiState: StateFlow<ConverterUiState> = _uiState.asStateFlow()

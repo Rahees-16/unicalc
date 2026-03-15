@@ -156,6 +156,40 @@ object UnitData {
             UnitDef("Cup", "cup", { it * 236.588 }, { it / 236.588 }),
             UnitDef("Fluid Ounce", "fl oz", { it * 29.5735 }, { it / 29.5735 }),
             UnitDef("Pinch", "pinch", { it * 0.308057 }, { it / 0.308057 })
+        ),
+
+        UnitCategory.TORQUE to listOf(
+            UnitDef("Newton-meter", "N\u00B7m", { it }, { it }),
+            UnitDef("Foot-pound", "ft\u00B7lbf", { it * 1.3558179483 }, { it / 1.3558179483 }),
+            UnitDef("Inch-pound", "in\u00B7lbf", { it * 0.1129848290 }, { it / 0.1129848290 }),
+            UnitDef("Kilogram-force meter", "kgf\u00B7m", { it * 9.80665 }, { it / 9.80665 }),
+            UnitDef("Dyne-centimeter", "dyn\u00B7cm", { it * 0.0000001 }, { it / 0.0000001 })
+        ),
+
+        UnitCategory.DENSITY to listOf(
+            UnitDef("kg/m\u00B3", "kg/m\u00B3", { it }, { it }),
+            UnitDef("g/cm\u00B3", "g/cm\u00B3", { it * 1000.0 }, { it / 1000.0 }),
+            UnitDef("g/mL", "g/mL", { it * 1000.0 }, { it / 1000.0 }),
+            UnitDef("kg/L", "kg/L", { it * 1000.0 }, { it / 1000.0 }),
+            UnitDef("lb/ft\u00B3", "lb/ft\u00B3", { it * 16.018463374 }, { it / 16.018463374 }),
+            UnitDef("lb/gal", "lb/gal", { it * 119.826427317 }, { it / 119.826427317 }),
+            UnitDef("oz/in\u00B3", "oz/in\u00B3", { it * 1729.994044 }, { it / 1729.994044 })
+        ),
+
+        UnitCategory.FORCE to listOf(
+            UnitDef("Newton", "N", { it }, { it }),
+            UnitDef("Kilonewton", "kN", { it * 1000.0 }, { it / 1000.0 }),
+            UnitDef("Dyne", "dyn", { it * 0.00001 }, { it / 0.00001 }),
+            UnitDef("Pound-force", "lbf", { it * 4.4482216153 }, { it / 4.4482216153 }),
+            UnitDef("Kilogram-force", "kgf", { it * 9.80665 }, { it / 9.80665 }),
+            UnitDef("Ounce-force", "ozf", { it * 0.27801385095 }, { it / 0.27801385095 })
+        ),
+
+        UnitCategory.ILLUMINANCE to listOf(
+            UnitDef("Lux", "lx", { it }, { it }),
+            UnitDef("Foot-candle", "fc", { it * 10.7639104167 }, { it / 10.7639104167 }),
+            UnitDef("Phot", "ph", { it * 10000.0 }, { it / 10000.0 }),
+            UnitDef("Nox", "nx", { it * 0.001 }, { it / 0.001 })
         )
     )
 }

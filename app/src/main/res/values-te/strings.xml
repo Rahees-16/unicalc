@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">మార్చు</string>
+    <string name="nav_calculator">కాలిక్యులేటర్</string>
+    <string name="nav_currency">కరెన్సీ</string>
+    <string name="nav_settings">సెట్టింగ్‌లు</string>
+    <string name="converter_title">యూనిట్ కన్వర్టర్</string>
+    <string name="calculator_title">కాలిక్యులేటర్</string>
+    <string name="currency_title">కరెన్సీ కన్వర్టర్</string>
+    <string name="settings_title">సెట్టింగ్‌లు</string>
+    <string name="history_title">చరిత్ర</string>
+    <string name="profession_title">ప్రొఫెషనల్ టూల్స్</string>
+    <string name="from_unit">నుండి</string>
+    <string name="to_unit">కు</string>
+    <string name="swap_units">యూనిట్లు మార్చు</string>
+    <string name="enter_value">విలువ నమోదు చేయండి</string>
+    <string name="show_all_units">అన్ని యూనిట్లు చూపించు</string>
+    <string name="add_to_favorites">ఇష్టమైనవాటికి జోడించు</string>
+    <string name="clear_history">చరిత్ర తొలగించు</string>
+    <string name="theme">థీమ్</string>
+    <string name="decimal_places">దశాంశ స్థానాలు</string>
+    <string name="default_currency_pair">డిఫాల్ట్ కరెన్సీ జత</string>
+    <string name="system_default">సిస్టమ్ డిఫాల్ట్</string>
+    <string name="light">లైట్</string>
+    <string name="dark">డార్క్</string>
+    <string name="widget_description">త్వరిత యూనిట్ కన్వర్టర్ విడ్జెట్</string>
+    <string name="last_updated">చివరి నవీకరణ: %1$s</string>
+    <string name="offline_cached">ఆఫ్‌లైన్ - కాష్ చేసిన రేట్లు</string>
+    <string name="no_favorites">ఇంకా ఇష్టమైనవి లేవు</string>
+    <string name="no_history">మార్పిడి చరిత్ర లేదు</string>
+    <string name="search_currency">కరెన్సీ శోధించు</string>
+</resources>

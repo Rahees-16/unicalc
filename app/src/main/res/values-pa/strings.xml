@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">ਬਦਲੋ</string>
+    <string name="nav_calculator">ਕੈਲਕੁਲੇਟਰ</string>
+    <string name="nav_currency">ਮੁਦਰਾ</string>
+    <string name="nav_settings">ਸੈਟਿੰਗਾਂ</string>
+    <string name="converter_title">ਯੂਨਿਟ ਕਨਵਰਟਰ</string>
+    <string name="calculator_title">ਕੈਲਕੁਲੇਟਰ</string>
+    <string name="currency_title">ਮੁਦਰਾ ਕਨਵਰਟਰ</string>
+    <string name="settings_title">ਸੈਟਿੰਗਾਂ</string>
+    <string name="history_title">ਇਤਿਹਾਸ</string>
+    <string name="profession_title">ਪੇਸ਼ੇਵਰ ਸੰਦ</string>
+    <string name="from_unit">ਤੋਂ</string>
+    <string name="to_unit">ਵਿੱਚ</string>
+    <string name="swap_units">ਯੂਨਿਟ ਬਦਲੋ</string>
+    <string name="enter_value">ਮੁੱਲ ਦਾਖਲ ਕਰੋ</string>
+    <string name="show_all_units">ਸਾਰੀਆਂ ਯੂਨਿਟਾਂ ਦਿਖਾਓ</string>
+    <string name="add_to_favorites">ਮਨਪਸੰਦ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+    <string name="clear_history">ਇਤਿਹਾਸ ਸਾਫ਼ ਕਰੋ</string>
+    <string name="theme">ਥੀਮ</string>
+    <string name="decimal_places">ਦਸ਼ਮਲਵ ਥਾਵਾਂ</string>
+    <string name="default_currency_pair">ਡਿਫੌਲਟ ਮੁਦਰਾ ਜੋੜੀ</string>
+    <string name="system_default">ਸਿਸਟਮ ਡਿਫੌਲਟ</string>
+    <string name="light">ਲਾਈਟ</string>
+    <string name="dark">ਡਾਰਕ</string>
+    <string name="widget_description">ਤੁਰੰਤ ਯੂਨਿਟ ਕਨਵਰਟਰ ਵਿਜੇਟ</string>
+    <string name="last_updated">ਆਖਰੀ ਅੱਪਡੇਟ: %1$s</string>
+    <string name="offline_cached">ਆਫਲਾਈਨ - ਕੈਸ਼ ਕੀਤੀਆਂ ਦਰਾਂ</string>
+    <string name="no_favorites">ਅਜੇ ਕੋਈ ਮਨਪਸੰਦ ਨਹੀਂ</string>
+    <string name="no_history">ਕੋਈ ਬਦਲੀ ਇਤਿਹਾਸ ਨਹੀਂ</string>
+    <string name="search_currency">ਮੁਦਰਾ ਖੋਜੋ</string>
+</resources>

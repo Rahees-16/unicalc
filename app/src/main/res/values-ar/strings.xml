@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">تحويل</string>
+    <string name="nav_calculator">آلة حاسبة</string>
+    <string name="nav_currency">عملة</string>
+    <string name="nav_settings">إعدادات</string>
+    <string name="converter_title">محول الوحدات</string>
+    <string name="calculator_title">آلة حاسبة</string>
+    <string name="currency_title">محول العملات</string>
+    <string name="settings_title">الإعدادات</string>
+    <string name="history_title">السجل</string>
+    <string name="profession_title">أدوات مهنية</string>
+    <string name="from_unit">من</string>
+    <string name="to_unit">إلى</string>
+    <string name="swap_units">تبديل الوحدات</string>
+    <string name="enter_value">أدخل القيمة</string>
+    <string name="show_all_units">عرض جميع الوحدات</string>
+    <string name="add_to_favorites">إضافة للمفضلة</string>
+    <string name="clear_history">مسح السجل</string>
+    <string name="theme">المظهر</string>
+    <string name="decimal_places">المنازل العشرية</string>
+    <string name="default_currency_pair">زوج العملات الافتراضي</string>
+    <string name="system_default">افتراضي النظام</string>
+    <string name="light">فاتح</string>
+    <string name="dark">داكن</string>
+    <string name="widget_description">أداة تحويل سريعة</string>
+    <string name="last_updated">آخر تحديث: %1$s</string>
+    <string name="offline_cached">غير متصل - أسعار مخزنة</string>
+    <string name="no_favorites">لا مفضلات بعد</string>
+    <string name="no_history">لا يوجد سجل تحويل</string>
+    <string name="search_currency">البحث عن عملة</string>
+</resources>
