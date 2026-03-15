@@ -1,11 +1,15 @@
 package com.rahees.unicalc.ui.screens.calculator
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -28,6 +32,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -47,6 +52,8 @@ fun CalculatorScreen(
     var showHistory by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
     val scope = rememberCoroutineScope()
+    val screenWidthDp = LocalConfiguration.current.screenWidthDp
+    val isExpanded = screenWidthDp > 840
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
@@ -60,51 +67,145 @@ fun CalculatorScreen(
                         else MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
-                IconButton(onClick = {
-                    showHistory = true
-                    scope.launch { sheetState.show() }
-                }) {
-                    Icon(Icons.Default.History, contentDescription = "History")
+                if (!isExpanded) {
+                    IconButton(onClick = {
+                        showHistory = true
+                        scope.launch { sheetState.show() }
+                    }) {
+                        Icon(Icons.Default.History, contentDescription = "History")
+                    }
                 }
             }
         )
 
-        // Display area
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .padding(horizontal = 16.dp),
-            horizontalAlignment = Alignment.End
-        ) {
-            Spacer(modifier = Modifier.weight(1f))
-            Text(
-                text = state.expression.ifEmpty { "0" },
-                style = MaterialTheme.typography.headlineLarge,
-                fontWeight = FontWeight.Normal,
-                textAlign = TextAlign.End,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.fillMaxWidth()
-            )
-            if (state.result.isNotEmpty()) {
+        if (isExpanded) {
+            // Tablet: keypad and history side by side
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 8.dp),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                // Calculator side
+                Column(modifier = Modifier.weight(1f)) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f)
+                            .padding(horizontal = 16.dp),
+                        horizontalAlignment = Alignment.End
+                    ) {
+                        Spacer(modifier = Modifier.weight(1f))
+                        Text(
+                            text = state.expression.ifEmpty { "0" },
+                            style = MaterialTheme.typography.headlineLarge,
+                            fontWeight = FontWeight.Normal,
+                            textAlign = TextAlign.End,
+                            maxLines = 3,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                        if (state.result.isNotEmpty()) {
+                            Text(
+                                text = "= ${state.result}",
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                textAlign = TextAlign.End,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+
+                    CalculatorKeypad(
+                        isScientific = state.isScientific,
+                        onButtonClick = { viewModel.onButtonClick(it) },
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
+                    )
+                }
+
+                // History side
+                Column(
+                    modifier = Modifier
+                        .weight(0.6f)
+                        .fillMaxHeight()
+                        .padding(vertical = 8.dp)
+                ) {
+                    Text(
+                        text = "Calculation History",
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 12.dp)
+                    )
+
+                    if (state.history.isEmpty()) {
+                        Text(
+                            text = "No calculations yet",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(vertical = 24.dp)
+                        )
+                    } else {
+                        LazyColumn {
+                            items(state.history) { (expr, result) ->
+                                Column(modifier = Modifier.padding(vertical = 6.dp)) {
+                                    Text(
+                                        text = expr,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        maxLines = 2,
+                                        overflow = TextOverflow.Ellipsis
+                                    )
+                                    Text(
+                                        text = "= $result",
+                                        style = MaterialTheme.typography.titleMedium,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 18.sp
+                                    )
+                                }
+                                HorizontalDivider()
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            // Phone: vertical layout
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .padding(horizontal = 16.dp),
+                horizontalAlignment = Alignment.End
+            ) {
+                Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    text = "= ${state.result}",
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    text = state.expression.ifEmpty { "0" },
+                    style = MaterialTheme.typography.headlineLarge,
+                    fontWeight = FontWeight.Normal,
                     textAlign = TextAlign.End,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.fillMaxWidth()
                 )
+                if (state.result.isNotEmpty()) {
+                    Text(
+                        text = "= ${state.result}",
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.End,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
+                Spacer(modifier = Modifier.height(8.dp))
             }
-            Spacer(modifier = Modifier.height(8.dp))
-        }
 
-        // Keypad
-        CalculatorKeypad(
-            isScientific = state.isScientific,
-            onButtonClick = { viewModel.onButtonClick(it) },
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
-        )
+            CalculatorKeypad(
+                isScientific = state.isScientific,
+                onButtonClick = { viewModel.onButtonClick(it) },
+                modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
+            )
+        }
     }
 
     if (showHistory) {

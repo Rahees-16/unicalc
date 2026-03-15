@@ -33,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -108,8 +109,15 @@ fun HomeScreen(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp)
         )
 
+        val screenWidthDp = LocalConfiguration.current.screenWidthDp
+        val gridColumns = when {
+            screenWidthDp > 840 -> 5  // expanded (large tablet)
+            screenWidthDp > 600 -> 4  // medium (small tablet)
+            else -> 3                 // compact (phone)
+        }
+
         LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
+            columns = GridCells.Fixed(gridColumns),
             contentPadding = PaddingValues(horizontal = 12.dp),
             modifier = Modifier.weight(1f)
         ) {
