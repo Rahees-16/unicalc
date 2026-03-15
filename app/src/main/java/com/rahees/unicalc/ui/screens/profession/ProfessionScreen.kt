@@ -27,6 +27,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -46,7 +47,7 @@ fun ProfessionScreen(
     viewModel: ProfessionViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val tabs = listOf("Construction", "Electrical", "Cooking", "Health")
+    val tabs = listOf("Construction", "Electrical", "Cooking", "Health", "Finance")
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(
@@ -82,6 +83,7 @@ fun ProfessionScreen(
                 1 -> ElectricalTab(state, viewModel)
                 2 -> CookingTab(state, viewModel)
                 3 -> HealthTab(state, viewModel)
+                4 -> FinanceTab(state, viewModel)
             }
         }
     }
@@ -486,6 +488,176 @@ private fun HealthTab(state: ProfessionUiState, viewModel: ProfessionViewModel) 
                             else -> MaterialTheme.colorScheme.tertiary
                         }
                     )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun FinanceTab(state: ProfessionUiState, viewModel: ProfessionViewModel) {
+    // Tip Calculator
+    CalculatorCard(title = "Tip Calculator") {
+        OutlinedTextField(
+            value = state.tip.billAmount,
+            onValueChange = { viewModel.onTipChange(billAmount = it) },
+            label = { Text("Bill Amount") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(
+            text = "Tip: ${state.tip.tipPercent}%",
+            style = MaterialTheme.typography.bodyMedium,
+            fontWeight = FontWeight.Medium
+        )
+        Slider(
+            value = (state.tip.tipPercent.toFloatOrNull() ?: 15f),
+            onValueChange = { viewModel.onTipChange(tipPercent = it.toInt().toString()) },
+            valueRange = 5f..30f,
+            steps = 24,
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        OutlinedTextField(
+            value = state.tip.splitCount,
+            onValueChange = { viewModel.onTipChange(splitCount = it) },
+            label = { Text("Split Between") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        if (state.tip.tipAmount.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(12.dp))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+                )
+            ) {
+                Column(modifier = Modifier.padding(12.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text("Tip Amount", style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            state.tip.tipAmount,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text("Total", style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            state.tip.totalAmount,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    if ((state.tip.splitCount.toIntOrNull() ?: 1) > 1) {
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween
+                        ) {
+                            Text("Per Person", style = MaterialTheme.typography.bodyMedium)
+                            Text(
+                                state.tip.perPerson,
+                                fontWeight = FontWeight.Bold,
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    Spacer(modifier = Modifier.height(16.dp))
+
+    // Loan/EMI Calculator
+    CalculatorCard(title = "Loan / EMI Calculator") {
+        OutlinedTextField(
+            value = state.loan.principal,
+            onValueChange = { viewModel.onLoanChange(principal = it) },
+            label = { Text("Loan Amount (Principal)") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            OutlinedTextField(
+                value = state.loan.annualRate,
+                onValueChange = { viewModel.onLoanChange(annualRate = it) },
+                label = { Text("Annual Rate (%)") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                modifier = Modifier.weight(1f),
+                singleLine = true
+            )
+            OutlinedTextField(
+                value = state.loan.years,
+                onValueChange = { viewModel.onLoanChange(years = it) },
+                label = { Text("Years") },
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                modifier = Modifier.weight(1f),
+                singleLine = true
+            )
+        }
+        if (state.loan.monthlyEmi.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(12.dp))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+                )
+            ) {
+                Column(modifier = Modifier.padding(12.dp)) {
+                    Text(
+                        text = "Monthly EMI",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    Text(
+                        text = state.loan.monthlyEmi,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text("Total Payment", style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            state.loan.totalPayment,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text("Total Interest", style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            state.loan.totalInterest,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.error
+                        )
+                    }
                 }
             }
         }

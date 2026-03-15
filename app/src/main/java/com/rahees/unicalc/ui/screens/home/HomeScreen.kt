@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rahees.unicalc.domain.UnitCategory
+import com.rahees.unicalc.ui.components.BannerAd
 import com.rahees.unicalc.ui.components.CategoryCard
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -185,6 +186,8 @@ fun HomeScreen(
             }
             Spacer(modifier = Modifier.height(4.dp))
         }
+
+        BannerAd()
     }
 }
 

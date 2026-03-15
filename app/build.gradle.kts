@@ -82,5 +82,7 @@ dependencies {
 
     implementation(libs.kotlinx.serialization.json)
 
+    implementation(libs.play.services.ads)
+
     debugImplementation(libs.androidx.ui.tooling)
 }

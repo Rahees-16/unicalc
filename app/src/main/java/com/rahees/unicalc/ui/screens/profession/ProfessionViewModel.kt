@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
+import kotlin.math.pow
 
 data class ConcreteState(
     val length: String = "",
@@ -67,6 +68,24 @@ data class BmiState(
     val category: String = ""
 )
 
+data class TipState(
+    val billAmount: String = "",
+    val tipPercent: String = "15",
+    val splitCount: String = "1",
+    val tipAmount: String = "",
+    val totalAmount: String = "",
+    val perPerson: String = ""
+)
+
+data class LoanState(
+    val principal: String = "",
+    val annualRate: String = "",
+    val years: String = "",
+    val monthlyEmi: String = "",
+    val totalPayment: String = "",
+    val totalInterest: String = ""
+)
+
 data class ProfessionUiState(
     val selectedTab: Int = 0,
     val concrete: ConcreteState = ConcreteState(),
@@ -75,7 +94,9 @@ data class ProfessionUiState(
     val ohm: OhmState = OhmState(),
     val powerCalc: PowerCalcState = PowerCalcState(),
     val recipe: RecipeState = RecipeState(),
-    val bmi: BmiState = BmiState()
+    val bmi: BmiState = BmiState(),
+    val tip: TipState = TipState(),
+    val loan: LoanState = LoanState()
 )
 
 @HiltViewModel
@@ -279,6 +300,64 @@ class ProfessionViewModel @Inject constructor() : ViewModel() {
                 bmi.copy(result = "", category = "")
             }
             state.copy(bmi = updated)
+        }
+    }
+
+    // Tip Calculator
+    fun onTipChange(billAmount: String? = null, tipPercent: String? = null, splitCount: String? = null) {
+        _uiState.update { state ->
+            val tip = state.tip.copy(
+                billAmount = billAmount ?: state.tip.billAmount,
+                tipPercent = tipPercent ?: state.tip.tipPercent,
+                splitCount = splitCount ?: state.tip.splitCount
+            )
+            val bill = tip.billAmount.toDoubleOrNull()
+            val percent = tip.tipPercent.toDoubleOrNull()
+            val split = tip.splitCount.toIntOrNull()?.coerceAtLeast(1)
+
+            val updated = if (bill != null && percent != null && split != null) {
+                val tipAmt = bill * percent / 100.0
+                val total = bill + tipAmt
+                val perPerson = total / split
+                tip.copy(
+                    tipAmount = String.format("%.2f", tipAmt),
+                    totalAmount = String.format("%.2f", total),
+                    perPerson = String.format("%.2f", perPerson)
+                )
+            } else {
+                tip.copy(tipAmount = "", totalAmount = "", perPerson = "")
+            }
+            state.copy(tip = updated)
+        }
+    }
+
+    // Loan/EMI Calculator
+    fun onLoanChange(principal: String? = null, annualRate: String? = null, years: String? = null) {
+        _uiState.update { state ->
+            val loan = state.loan.copy(
+                principal = principal ?: state.loan.principal,
+                annualRate = annualRate ?: state.loan.annualRate,
+                years = years ?: state.loan.years
+            )
+            val p = loan.principal.toDoubleOrNull()
+            val rate = loan.annualRate.toDoubleOrNull()
+            val y = loan.years.toDoubleOrNull()
+
+            val updated = if (p != null && rate != null && y != null && p > 0 && rate > 0 && y > 0) {
+                val r = rate / 12.0 / 100.0
+                val n = y * 12.0
+                val emi = p * r * (1 + r).pow(n) / ((1 + r).pow(n) - 1)
+                val totalPayment = emi * n
+                val totalInterest = totalPayment - p
+                loan.copy(
+                    monthlyEmi = String.format("%.2f", emi),
+                    totalPayment = String.format("%.2f", totalPayment),
+                    totalInterest = String.format("%.2f", totalInterest)
+                )
+            } else {
+                loan.copy(monthlyEmi = "", totalPayment = "", totalInterest = "")
+            }
+            state.copy(loan = updated)
         }
     }
 
