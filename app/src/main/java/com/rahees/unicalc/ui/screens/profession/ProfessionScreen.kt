@@ -25,8 +25,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -58,7 +58,10 @@ fun ProfessionScreen(
             }
         )
 
-        TabRow(selectedTabIndex = state.selectedTab) {
+        ScrollableTabRow(
+            selectedTabIndex = state.selectedTab,
+            edgePadding = 0.dp
+        ) {
             tabs.forEachIndexed { index, title ->
                 Tab(
                     selected = state.selectedTab == index,
@@ -78,6 +81,7 @@ fun ProfessionScreen(
                 0 -> ConstructionTab(state, viewModel)
                 1 -> ElectricalTab(state, viewModel)
                 2 -> CookingTab(state, viewModel)
+                3 -> HealthTab(state, viewModel)
             }
         }
     }
@@ -416,6 +420,71 @@ private fun CookingTab(state: ProfessionUiState, viewModel: ProfessionViewModel)
                         text = "${ing.amount} ${ing.unit} ${ing.name}",
                         style = MaterialTheme.typography.bodyLarge,
                         modifier = Modifier.padding(vertical = 2.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun HealthTab(state: ProfessionUiState, viewModel: ProfessionViewModel) {
+    CalculatorCard(title = "BMI Calculator") {
+        OutlinedTextField(
+            value = state.bmi.height,
+            onValueChange = { viewModel.onBmiChange(height = it) },
+            label = { Text("Height (cm)") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        OutlinedTextField(
+            value = state.bmi.weight,
+            onValueChange = { viewModel.onBmiChange(weight = it) },
+            label = { Text("Weight (kg)") },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+        if (state.bmi.result.isNotEmpty()) {
+            Spacer(modifier = Modifier.height(12.dp))
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = when (state.bmi.category) {
+                        "Underweight" -> MaterialTheme.colorScheme.tertiary.copy(alpha = 0.1f)
+                        "Normal" -> MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
+                        "Overweight" -> MaterialTheme.colorScheme.error.copy(alpha = 0.08f)
+                        "Obese" -> MaterialTheme.colorScheme.error.copy(alpha = 0.15f)
+                        else -> MaterialTheme.colorScheme.surfaceVariant
+                    }
+                )
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "BMI: ${state.bmi.result}",
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = when (state.bmi.category) {
+                            "Normal" -> MaterialTheme.colorScheme.primary
+                            "Overweight", "Obese" -> MaterialTheme.colorScheme.error
+                            else -> MaterialTheme.colorScheme.tertiary
+                        }
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = state.bmi.category,
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = when (state.bmi.category) {
+                            "Normal" -> MaterialTheme.colorScheme.primary
+                            "Overweight", "Obese" -> MaterialTheme.colorScheme.error
+                            else -> MaterialTheme.colorScheme.tertiary
+                        }
                     )
                 }
             }
