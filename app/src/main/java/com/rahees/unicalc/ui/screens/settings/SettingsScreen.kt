@@ -1,5 +1,9 @@
 package com.rahees.unicalc.ui.screens.settings
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,17 +14,23 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -134,6 +144,63 @@ fun SettingsScreen(
                         )
                     }
                 }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Language
+            val context = LocalContext.current
+            var showLanguageDialog by remember { mutableStateOf(false) }
+
+            val currentLocale = remember {
+                val locales = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    context.resources.configuration.locales
+                } else {
+                    @Suppress("DEPRECATION")
+                    android.os.LocaleList.forLanguageTags(
+                        context.resources.configuration.locales.toLanguageTags()
+                    )
+                }
+                locales.get(0)?.displayLanguage ?: "System Default"
+            }
+
+            SettingsSection(title = "Language") {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                val intent = Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
+                                intent.data = Uri.parse("package:${context.packageName}")
+                                context.startActivity(intent)
+                            } else {
+                                showLanguageDialog = true
+                            }
+                        }
+                        .padding(vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "App Language: $currentLocale",
+                        style = MaterialTheme.typography.bodyLarge,
+                        modifier = Modifier.padding(start = 8.dp)
+                    )
+                }
+            }
+
+            if (showLanguageDialog) {
+                AlertDialog(
+                    onDismissRequest = { showLanguageDialog = false },
+                    title = { Text("Language") },
+                    text = {
+                        Text("On this Android version, please change the app language in your device's system settings:\nSettings > Apps > UniCalc > Language")
+                    },
+                    confirmButton = {
+                        TextButton(onClick = { showLanguageDialog = false }) {
+                            Text("OK")
+                        }
+                    }
+                )
             }
 
             Spacer(modifier = Modifier.height(24.dp))
