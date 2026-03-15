@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniCalc</string>
+    <string name="nav_convert">Convert</string>
+    <string name="nav_calculator">Calculator</string>
+    <string name="nav_currency">Currency</string>
+    <string name="nav_settings">Settings</string>
+    <string name="converter_title">Unit Converter</string>
+    <string name="calculator_title">Calculator</string>
+    <string name="currency_title">Currency Converter</string>
+    <string name="settings_title">Settings</string>
+    <string name="history_title">History</string>
+    <string name="profession_title">Profession Tools</string>
+    <string name="from_unit">From</string>
+    <string name="to_unit">To</string>
+    <string name="swap_units">Swap units</string>
+    <string name="enter_value">Enter value</string>
+    <string name="show_all_units">Show all units</string>
+    <string name="add_to_favorites">Add to favorites</string>
+    <string name="clear_history">Clear history</string>
+    <string name="theme">Theme</string>
+    <string name="decimal_places">Decimal places</string>
+    <string name="default_currency_pair">Default currency pair</string>
+    <string name="system_default">System default</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="widget_description">Quick unit converter widget</string>
+    <string name="last_updated">Last updated: %1$s</string>
+    <string name="offline_cached">Offline - using cached rates</string>
+    <string name="no_favorites">No favorites yet</string>
+    <string name="no_history">No conversion history</string>
+    <string name="search_currency">Search currency</string>
+</resources>
