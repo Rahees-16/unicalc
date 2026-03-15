@@ -1,6 +1,11 @@
 package com.rahees.unicalc.ui.screens.converter
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,14 +32,20 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -43,8 +54,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.rahees.unicalc.ui.components.ConversionResultCard
 import com.rahees.unicalc.ui.components.UnitPicker
+import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun ConverterScreen(
     categoryName: String,
@@ -54,8 +66,14 @@ fun ConverterScreen(
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val screenWidthDp = LocalConfiguration.current.screenWidthDp
     val isExpanded = screenWidthDp > 840
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackbarHostState) }
+    ) { scaffoldPadding ->
+    Column(modifier = Modifier.fillMaxSize().padding(scaffoldPadding)) {
         TopAppBar(
             title = { Text(state.category.displayName) },
             navigationIcon = {
@@ -88,7 +106,14 @@ fun ConverterScreen(
                         .weight(1f)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    ConverterContent(state, viewModel, showAllUnitsToggle = false)
+                    ConverterContent(
+                        state, viewModel, showAllUnitsToggle = false,
+                        onResultLongClick = {
+                            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                            clipboard.setPrimaryClip(ClipData.newPlainText("result", state.result))
+                            scope.launch { snackbarHostState.showSnackbar("Result copied to clipboard") }
+                        }
+                    )
                 }
 
                 // All units side (always visible on tablets)
@@ -122,17 +147,27 @@ fun ConverterScreen(
                     .verticalScroll(rememberScrollState())
                     .padding(16.dp)
             ) {
-                ConverterContent(state, viewModel, showAllUnitsToggle = true)
+                ConverterContent(
+                    state, viewModel, showAllUnitsToggle = true,
+                    onResultLongClick = {
+                        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                        clipboard.setPrimaryClip(ClipData.newPlainText("result", state.result))
+                        scope.launch { snackbarHostState.showSnackbar("Result copied to clipboard") }
+                    }
+                )
             }
         }
     }
+    }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun ConverterContent(
     state: ConverterUiState,
     viewModel: ConverterViewModel,
-    showAllUnitsToggle: Boolean
+    showAllUnitsToggle: Boolean,
+    onResultLongClick: (() -> Unit)? = null
 ) {
     OutlinedTextField(
         value = state.inputValue,
@@ -180,18 +215,27 @@ private fun ConverterContent(
 
     // Result display
     if (state.result.isNotEmpty()) {
-        Text(
-            text = state.result,
-            style = MaterialTheme.typography.displaySmall,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Text(
-            text = state.toUnit?.let { "${it.name} (${it.symbol})" } ?: "",
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .combinedClickable(
+                    onClick = {},
+                    onLongClick = { onResultLongClick?.invoke() }
+                )
+        ) {
+            Text(
+                text = state.result,
+                style = MaterialTheme.typography.displaySmall,
+                fontWeight = FontWeight.Bold,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Text(
+                text = state.toUnit?.let { "${it.name} (${it.symbol})" } ?: "",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
     }
 
     if (showAllUnitsToggle) {

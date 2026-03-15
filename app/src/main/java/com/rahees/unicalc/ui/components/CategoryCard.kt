@@ -51,10 +51,10 @@ fun getCategoryIcon(category: UnitCategory): ImageVector {
         UnitCategory.ANGLE -> Icons.Default.Architecture
         UnitCategory.FREQUENCY -> Icons.Default.GraphicEq
         UnitCategory.COOKING -> Icons.Default.Restaurant
-        UnitCategory.TORQUE -> Icons.Default.Build
-        UnitCategory.DENSITY -> Icons.Default.Science
+        UnitCategory.TORQUE -> Icons.Default.Settings
+        UnitCategory.DENSITY -> Icons.Default.WaterDrop
         UnitCategory.FORCE -> Icons.Default.FitnessCenter
-        UnitCategory.ILLUMINANCE -> Icons.Default.LightMode
+        UnitCategory.ILLUMINANCE -> Icons.Default.Bolt
     }
 }
 

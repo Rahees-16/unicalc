@@ -46,7 +46,7 @@ fun ProfessionScreen(
     viewModel: ProfessionViewModel = hiltViewModel()
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
-    val tabs = listOf("Construction", "Electrical", "Cooking")
+    val tabs = listOf("Construction", "Electrical", "Cooking", "Health")
 
     Column(modifier = Modifier.fillMaxSize()) {
         TopAppBar(

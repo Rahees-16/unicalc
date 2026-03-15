@@ -60,6 +60,13 @@ data class RecipeState(
     val scaledIngredients: List<RecipeIngredient> = emptyList()
 )
 
+data class BmiState(
+    val height: String = "",
+    val weight: String = "",
+    val result: String = "",
+    val category: String = ""
+)
+
 data class ProfessionUiState(
     val selectedTab: Int = 0,
     val concrete: ConcreteState = ConcreteState(),
@@ -67,7 +74,8 @@ data class ProfessionUiState(
     val paint: PaintState = PaintState(),
     val ohm: OhmState = OhmState(),
     val powerCalc: PowerCalcState = PowerCalcState(),
-    val recipe: RecipeState = RecipeState()
+    val recipe: RecipeState = RecipeState(),
+    val bmi: BmiState = BmiState()
 )
 
 @HiltViewModel
@@ -242,6 +250,35 @@ class ProfessionViewModel @Inject constructor() : ViewModel() {
                 )
                 state.copy(recipe = recipe.copy(scaledIngredients = scaleIngredients(recipe)))
             } else state
+        }
+    }
+
+    // BMI Calculator
+    fun onBmiChange(height: String? = null, weight: String? = null) {
+        _uiState.update { state ->
+            val bmi = state.bmi.copy(
+                height = height ?: state.bmi.height,
+                weight = weight ?: state.bmi.weight
+            )
+            val h = bmi.height.toDoubleOrNull()
+            val w = bmi.weight.toDoubleOrNull()
+            val updated = if (h != null && w != null && h > 0) {
+                val heightM = h / 100.0
+                val bmiValue = w / (heightM * heightM)
+                val category = when {
+                    bmiValue < 18.5 -> "Underweight"
+                    bmiValue < 25.0 -> "Normal"
+                    bmiValue < 30.0 -> "Overweight"
+                    else -> "Obese"
+                }
+                bmi.copy(
+                    result = String.format("%.1f", bmiValue),
+                    category = category
+                )
+            } else {
+                bmi.copy(result = "", category = "")
+            }
+            state.copy(bmi = updated)
         }
     }
 
