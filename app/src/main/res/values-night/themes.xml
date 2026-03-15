@@ -3,7 +3,7 @@
     <style name="Theme.UniCalc" parent="android:Theme.Material.Light.NoActionBar" />
 
     <style name="Theme.UniCalc.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#3F51B5</item>
+        <item name="windowSplashScreenBackground">#283593</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.UniCalc</item>

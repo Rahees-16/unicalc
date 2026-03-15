@@ -134,7 +134,7 @@ class ProfessionViewModel @Inject constructor() : ViewModel() {
                 val bricks = (areaVal * 59.26).toLong()
                 "$bricks bricks (standard 215x65mm with 10mm mortar)"
             } else ""
-            state.copy(brick = BrickState(area = area, result = result))
+            state.copy(brick = BrickState(wallArea = area, result = result))
         }
     }
 

@@ -17,8 +17,10 @@ datastore = "1.1.4"
 glance = "1.1.1"
 glanceAppwidget = "1.1.1"
 kotlinxSerialization = "1.7.3"
+splashscreen = "1.0.1"
 
 [libraries]
+androidx-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
